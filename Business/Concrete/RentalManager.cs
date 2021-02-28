@@ -42,7 +42,6 @@ namespace Business.Concrete
                 }
             }
             
-            
         }
 
         public IResult Delete(Rental rental)
