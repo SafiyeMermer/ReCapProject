@@ -50,6 +50,12 @@ namespace Business.Constants
         public static string RentalCarFounded = "Rental Car is founded";
         public static string CarNotAvaliable = "Car is not available.";
 
-
+        public static string CarImageAdded = "Car Image is added.";
+        public static string CarImageDeleted = "Car Image is deleted.";
+        public static string CarImageUpdated = "Car Image is updated.";
+        public static string CarImageListed= "Cars Images are listed.";
+        public static string CarImageFounded = "Car Image is founded.";
+        public static string CarImageCountOfCarError = "Car must have a maximum of 5 images.";
+        public static string CarIdNotBelongAnyVehicle = "CarId does not belong to any car.";
     }
 }

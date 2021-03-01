@@ -27,6 +27,7 @@ namespace Business.Concrete
             return new SuccessResult(color.ColorName + " " + Messages.ColorAdded);
         }
 
+        [ValidationAspect(typeof(ColorValidator))]
         public IResult Update(Color color)
         {
             _colorDal.Update(color);

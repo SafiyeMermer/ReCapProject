@@ -26,6 +26,7 @@ namespace Business.Concrete
             return new SuccessResult(brand.BrandName + " " + Messages.BrandAdded);
         }
 
+        [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
         {
             _brandal.Update(brand);

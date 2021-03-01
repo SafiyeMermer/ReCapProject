@@ -49,6 +49,8 @@ namespace Business.Concrete
             _rentalDal.Delete(rental);
             return new SuccessResult(Messages.RentalCarDeleted);
         }
+
+        [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
             _rentalDal.Update(rental);
@@ -70,5 +72,7 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalCarDetails(), Messages.RentalCarListed);
         }
+
+       
     }
 }
