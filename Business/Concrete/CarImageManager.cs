@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http.Internal;
 using Core.Utilities.Helpers;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Business.BusinessAspects.Autofac;
 
 namespace Business.Concrete
 {
@@ -26,6 +27,7 @@ namespace Business.Concrete
             _carService = carService;
         }
 
+        [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file, CarImage carImage)
         {
@@ -57,7 +59,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarImageAdded);
         }
 
-
+        [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Delete(CarImage carImage)
         {
@@ -75,18 +77,19 @@ namespace Business.Concrete
 
         }
 
-
         public IDataResult<List<CarImage>> GetAll()
         {
 
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), Messages.CarImageListed);
         }
 
+        [SecuredOperation("admin")]
         public IDataResult<CarImage> GetById(int id)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(cı => cı.Id == id), Messages.CarImageFounded);
         }
 
+        [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(IFormFile file, CarImage carImage)
         {
@@ -103,6 +106,7 @@ namespace Business.Concrete
             _carImageDal.Update(carImage);
             return new SuccessResult(Messages.CarImageUpdated);
         }
+        [SecuredOperation("admin")]
         public IDataResult<List<CarImage>> GetByCarId(int carid)
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(cı => cı.CarId == carid), Messages.CarImageListed);

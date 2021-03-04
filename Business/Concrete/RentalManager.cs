@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
@@ -44,6 +45,7 @@ namespace Business.Concrete
             
         }
 
+
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
@@ -63,6 +65,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalCarListed);
         }
 
+ 
         public IDataResult<Rental> GetById(int id)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id),Messages.RentalCarFounded);
