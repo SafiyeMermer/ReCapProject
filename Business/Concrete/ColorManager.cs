@@ -44,6 +44,7 @@ namespace Business.Concrete
             return new SuccessResult(color.ColorName + " " + Messages.ColorDeleted);
         }
 
+        [SecuredOperation("admin,user")]
         public IDataResult<List<Color>> GetAll()
         {
             

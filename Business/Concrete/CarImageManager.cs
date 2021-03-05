@@ -77,6 +77,7 @@ namespace Business.Concrete
 
         }
 
+        [SecuredOperation("admin,user")]
         public IDataResult<List<CarImage>> GetAll()
         {
 

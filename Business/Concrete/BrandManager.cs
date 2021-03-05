@@ -45,6 +45,7 @@ namespace Business.Concrete
         }
 
 
+        [SecuredOperation("admin,user")]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandal.GetAll(),Messages.BrandListed);

@@ -45,6 +45,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarUpdated);
         }
 
+        [SecuredOperation("admin,user")]
         public IDataResult<List<Car>> GetAll()
         {
             if (DateTime.Now.Hour == 10)
