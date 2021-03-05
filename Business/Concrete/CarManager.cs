@@ -3,7 +3,9 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -23,14 +25,21 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-
+        [TransactionScopeAspect]
         [CacheRemoveAspect("ICarService.Get")]
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
-            _carDal.Add(car);
-            return new SuccessResult(Messages.CarAdded);
+            var result = BusinessRun.Run(CheckCarUnitPrice(car));
+
+            if (result == null)
+            {
+                _carDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
+            }
+            return new ErrorResult(Messages.DailyPriceOfCarNotLessThan);
+            
         }
 
         [CacheRemoveAspect("ICarService.Get")]
@@ -91,6 +100,19 @@ namespace Business.Concrete
             return new SuccessDataResult<Car>(_carDal.Get(c => c.Id == id), Messages.CarFounded);
         }
 
+
+        // Business Code
+
         
+        private IResult CheckCarUnitPrice(Car car)
+        {
+
+            if(car.DailyPrice < 500)
+            {
+                return new ErrorResult();
+            }
+            return new SuccessResult();
+        }
+
     }
 }

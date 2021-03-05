@@ -65,5 +65,6 @@ namespace Business.Constants
         public static string PasswordError = "Password error.";
         public static string SuccessfulLogin = "Successful Login";
         public static string UserRegistered = "User registered";
+        public static string DailyPriceOfCarNotLessThan = "The daily price of the car cannot be less than 500$.";
     }
 }
