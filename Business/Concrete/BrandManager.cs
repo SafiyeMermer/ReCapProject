@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -21,6 +22,7 @@ namespace Business.Concrete
             _brandal = brandal;
         }
 
+        [CacheRemoveAspect("IBrandService.Get")]
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Add(Brand brand)
@@ -29,6 +31,7 @@ namespace Business.Concrete
             return new SuccessResult(brand.BrandName + " " + Messages.BrandAdded);
         }
 
+        [CacheRemoveAspect("IBrandService.Get")]
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(BrandValidator))]
         public IResult Update(Brand brand)
@@ -37,6 +40,8 @@ namespace Business.Concrete
             return new SuccessResult(brand.BrandName + "  " + Messages.BrandUpdated);
         }
 
+
+        [CacheRemoveAspect("IBrandService.Get")]
         [SecuredOperation("admin")]
         public IResult Delete(Brand brand)
         {
@@ -44,13 +49,14 @@ namespace Business.Concrete
             return new SuccessResult(brand.BrandName + " " +Messages.BrandDeleted);
         }
 
-
+        [CacheAspect]
         [SecuredOperation("admin,user")]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandal.GetAll(),Messages.BrandListed);
         }
 
+        [CacheAspect]
         [SecuredOperation("admin")]
         public IDataResult<Brand> GetById(int id)
         {

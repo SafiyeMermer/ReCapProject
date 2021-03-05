@@ -14,6 +14,7 @@ using Core.Utilities.Helpers;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Business.BusinessAspects.Autofac;
+using Core.Aspects.Autofac.Caching;
 
 namespace Business.Concrete
 {
@@ -27,6 +28,7 @@ namespace Business.Concrete
             _carService = carService;
         }
 
+        [CacheRemoveAspect("ICarImageService.Get")]
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file, CarImage carImage)
@@ -45,6 +47,9 @@ namespace Business.Concrete
 
         }
 
+        [CacheRemoveAspect("ICarImageService.Get")]
+        [SecuredOperation("admin")]
+        [ValidationAspect(typeof(CarImageValidator))]
         public IResult AddDefault(CarImage carImage)
         {
             var result = BusinessRun.Run(CheckIMageLimitExceeded(carImage.CarId),
@@ -59,6 +64,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CarImageAdded);
         }
 
+        [CacheRemoveAspect("ICarImageService.Get")]
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Delete(CarImage carImage)
@@ -77,6 +83,7 @@ namespace Business.Concrete
 
         }
 
+        [CacheAspect]
         [SecuredOperation("admin,user")]
         public IDataResult<List<CarImage>> GetAll()
         {
@@ -84,12 +91,15 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(), Messages.CarImageListed);
         }
 
+
+        [CacheAspect]
         [SecuredOperation("admin")]
         public IDataResult<CarImage> GetById(int id)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(cı => cı.Id == id), Messages.CarImageFounded);
         }
 
+        [CacheRemoveAspect("ICarImageService.Get")]
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(IFormFile file, CarImage carImage)
