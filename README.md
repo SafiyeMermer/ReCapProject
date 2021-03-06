@@ -3,10 +3,9 @@
 <p align="center">
   <img src="https://cdn3.f-cdn.com/contestentries/401406/13464693/572b13cb93322_thumb900.jpg" />
 </p><br/>
+## Project Description <br/> 
 
-# Project Description <br/> 
-
-The project developed is an e-commerce project that can manage car rental operations. It is a project suitable for modular PnP (Plug and Play) architecture, based on SOLID software development principles and clean architecture methods.
+<p The project developed is an e-commerce project that can manage car rental operations. It is a project suitable for modular **PnP** (Plug and Play) architecture, based on **SOLID** software development principles and clean architecture methods. </p>
 # *Web API  *Asp.Net Core *Autofac *Entity Framework
 # Project Layers : 
 1 - Business <br/>
