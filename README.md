@@ -37,3 +37,5 @@ $ dotnet restore
 ### :arrow_right: Entities <br/> 
 ### :arrow_right: WebAPI <br/>
 
+## :star2: Contact
+<a  href="https://www.linkedin.com/in/safiye-mermer-433860188?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BHeHWRXPwQgiqvnZGqIYUAQ%3D%3D"><img width="100" src="https://www.ilksayfasite.com/svg/linkedin.png"></a>
