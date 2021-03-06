@@ -5,7 +5,21 @@
 </p><br/>
 
 # :star2: Project Description
-<p The project developed is an e-commerce project that can manage car rental operations. It is a project suitable for modular PnP(Plug and Play) architecture, based on SOLID software development principles and clean architecture methods. </p>
+The project developed is an e-commerce project that can manage car rental operations. It is a project suitable for modular PnP (Plug and Play) architecture, based on SOLID software development principles and clean architecture methods.
+
+# :star2: Running the Project
+```
+# Clone to repository
+$ git clone https://github.com/SafiyeMermer/ReCapProject
+
+# Go to the folder you cloned
+$ cd ReCapProject
+
+# Install dependencies
+$ dotnet restore
+
+# Run the application from the WebAPI layer
+```
 # *Web API  *Asp.Net Core *Autofac *Entity Framework
 # Project Layers : 
 1 - Business <br/>
