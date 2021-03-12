@@ -13,6 +13,7 @@ using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace Business.Concrete
 {
@@ -60,9 +61,10 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         public IDataResult<List<Car>> GetAll()
         {
+            //Thread.Sleep(5000);
             if (DateTime.Now.Hour == 10)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
@@ -87,7 +89,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id), Messages.CarsListed);
         }
 
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
             return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails(), Messages.CarsListed);

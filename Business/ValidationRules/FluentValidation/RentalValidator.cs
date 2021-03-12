@@ -11,9 +11,9 @@ namespace Business.ValidationRules.FluentValidation
         public RentalValidator()
         {
             RuleFor(r => r.RentDate).NotEmpty();
-            RuleFor(r => r.ReturnDate).NotEmpty();
+            //RuleFor(r => r.ReturnDate).NotEmpty();
             RuleFor(r => r.CarId).NotEmpty();
-            RuleFor(r => r.ReturnDate).GreaterThan(r => r.RentDate).WithMessage("Return Date greater than RentDate");
+            //RuleFor(r => r.ReturnDate).GreaterThan(r => r.RentDate).WithMessage("Return Date greater than RentDate");
         }
     }
 }

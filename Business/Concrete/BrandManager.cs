@@ -52,7 +52,7 @@ namespace Business.Concrete
 
         [PerformanceAspect(5)]
         [CacheAspect]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         public IDataResult<List<Brand>> GetAll()
         {
             return new SuccessDataResult<List<Brand>>(_brandal.GetAll(),Messages.BrandListed);

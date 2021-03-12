@@ -51,7 +51,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         public IDataResult<List<Color>> GetAll()
         {
             

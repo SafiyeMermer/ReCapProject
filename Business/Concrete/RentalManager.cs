@@ -53,7 +53,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         public IDataResult<List<Rental>> GetAll()
         {
             return new SuccessDataResult<List<Rental>>(_rentalDal.GetAll(),Messages.RentalCarListed);
@@ -67,7 +67,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id),Messages.RentalCarFounded);
         }
 
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         public IDataResult<List<RentalDetailDto>> GetRentCarDetail()
         {
             return new SuccessDataResult<List<RentalDetailDto>>(_rentalDal.GetRentalCarDetails(), Messages.RentalCarListed);
@@ -87,7 +87,7 @@ namespace Business.Concrete
             else
             {
                 var resultdate = _rentalDal.Get(c => c.ReturnDate > rental.RentDate);
-                if (/*rental.ReturnDate == new DateTime(0001,01,1) || */
+                if (rental.ReturnDate == new DateTime(0001,01,1) ||
                     resultdate != null) return new ErrorResult(Messages.CarNotAvaliable);
                 else
                 {
