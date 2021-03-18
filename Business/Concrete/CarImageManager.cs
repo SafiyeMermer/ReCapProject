@@ -29,7 +29,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("ICarImageService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Add(IFormFile file, CarImage carImage)
         {
@@ -48,7 +48,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("ICarImageService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult AddDefault(CarImage carImage)
         {
@@ -65,7 +65,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("ICarImageService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Delete(CarImage carImage)
         {
@@ -84,7 +84,7 @@ namespace Business.Concrete
         }
 
         [CacheAspect]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         public IDataResult<List<CarImage>> GetAll()
         {
 
@@ -93,22 +93,21 @@ namespace Business.Concrete
 
 
         [CacheAspect]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IDataResult<CarImage> GetById(int id)
         {
             return new SuccessDataResult<CarImage>(_carImageDal.Get(cı => cı.Id == id), Messages.CarImageFounded);
         }
 
         [CacheRemoveAspect("ICarImageService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(CarImageValidator))]
         public IResult Update(IFormFile file, CarImage carImage)
         {
             var result = BusinessRun.Run(CheckIMageLimitExceeded(carImage.CarId),
                                         CarImageAddedDate(carImage),
                                         CarImageDeterminedDefault(carImage),
-                                        CheckCarId(carImage.CarId),
-                                        CarImageUpdateFile(file,carImage));
+                                        CheckCarId(carImage.CarId));
             if (result != null)
             {
                 return result;
@@ -117,7 +116,7 @@ namespace Business.Concrete
             _carImageDal.Update(carImage);
             return new SuccessResult(Messages.CarImageUpdated);
         }
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IDataResult<List<CarImage>> GetByCarId(int carid)
         {
             return new SuccessDataResult<List<CarImage>>(_carImageDal.GetAll(cı => cı.CarId == carid), Messages.CarImageListed);
@@ -146,7 +145,7 @@ namespace Business.Concrete
         {
             if (carImage.ImagePath == null)
             {
-                carImage.ImagePath = @"C:\Users\Safiye\source\repos\ReCapProject\WebAPI\Images\defaultimage.png";
+                carImage.ImagePath = "default.jpg";
             }
             return new SuccessResult();
         }
@@ -173,12 +172,7 @@ namespace Business.Concrete
             FileSaveHelper.Delete(carImage.ImagePath);
             return new SuccessResult();
         }
-        private IResult CarImageUpdateFile(IFormFile file,CarImage carImage)
-        {
-            carImage.ImagePath = FileSaveHelper.Update(_carImageDal.Get(cı => cı.Id == carImage.Id).ImagePath, file);
-            return new SuccessResult();
-        }
-
+        
         
     }
 }

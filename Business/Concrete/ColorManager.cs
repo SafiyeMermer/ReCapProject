@@ -23,7 +23,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("IColorService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Add(Color color)
         {
@@ -33,7 +33,7 @@ namespace Business.Concrete
 
 
         [CacheRemoveAspect("IColorService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         [ValidationAspect(typeof(ColorValidator))]
         public IResult Update(Color color)
         {
@@ -43,7 +43,7 @@ namespace Business.Concrete
 
 
         [CacheRemoveAspect("IColorService.Get")]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
@@ -61,7 +61,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
-        [SecuredOperation("admin")]
+        //[SecuredOperation("admin")]
         public IDataResult<Color> GetById(int id)
         {
             return new SuccessDataResult<Color>(_colorDal.Get(c=> c.Id == id), Messages.ColorFounded);

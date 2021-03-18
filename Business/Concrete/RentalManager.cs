@@ -24,7 +24,7 @@ namespace Business.Concrete
 
 
         [CacheRemoveAspect("IRentalService.Get")]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Add(Rental rental)
         {
@@ -35,7 +35,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("IRentalService.Get")]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         public IResult Delete(Rental rental)
         {
             _rentalDal.Delete(rental);
@@ -43,7 +43,7 @@ namespace Business.Concrete
         }
 
         [CacheRemoveAspect("IRentalService.Get")]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         [ValidationAspect(typeof(RentalValidator))]
         public IResult Update(Rental rental)
         {
@@ -61,7 +61,7 @@ namespace Business.Concrete
 
 
         [CacheAspect]
-        [SecuredOperation("admin,user")]
+        //[SecuredOperation("admin,user")]
         public IDataResult<Rental> GetById(int id)
         {
             return new SuccessDataResult<Rental>(_rentalDal.Get(r => r.Id == id),Messages.RentalCarFounded);

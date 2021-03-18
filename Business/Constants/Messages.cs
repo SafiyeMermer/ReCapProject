@@ -66,5 +66,6 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Successful Login";
         public static string UserRegistered = "User registered";
         public static string DailyPriceOfCarNotLessThan = "The daily price of the car cannot be less than 500$.";
+        public  static string CarNotFound = "Car with these features could not be found.";
     }
 }
